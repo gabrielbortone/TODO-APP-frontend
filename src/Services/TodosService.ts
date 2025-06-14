@@ -13,7 +13,7 @@ export const getTodos = async (
         priority: number | null,
         dueDate: Date | null,
         finishDate: Date | null,
-        includeCompleted: boolean | null) => {
+        includeCompleted: boolean | null) : Promise<GetItemsResult> => {
     try{
         const response = await api.get<GetItemsResult>(`/todos/`,{
             params: {
