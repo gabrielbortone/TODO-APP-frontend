@@ -1,12 +1,12 @@
-import { Priority } from "./Priority";
-
 export interface TodoItem {
+    id: string,
     title: string,
     description: string,
-    priority: Priority,
+    priority: number,
     dueDate: Date,
+    finishDate: Date | undefined,
     categoryId: string,
     categoryName: string,
-    finishDate: Date | undefined,
+    categoryDescription: string,
     isTempDeleted: boolean
 }
