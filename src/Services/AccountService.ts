@@ -9,7 +9,7 @@ import { TokenJwtResponse } from '../CommonInterfaces/TokenJwtResponse';
 
 export const login = async (req: AccountLogin) => {
   try{
-    const response = await api.post<TokenJwtResponse|ValidationResult>("/users", req) 
+    const response = await api.post<TokenJwtResponse|ValidationResult>("/login", req) 
     return response.data;
   }catch(error){
     const responseError = getAxiosError()  
