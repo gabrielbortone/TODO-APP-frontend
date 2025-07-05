@@ -46,7 +46,23 @@ export const getTodos = async (
 export const createTodo = async (newTodoItem: TodoItem) => {
     try{
         const response = await api.post<ValidationResult|ToDoItemGet>(`/todos/`, newTodoItem) 
-        return response.data;
+        const data = response.data;
+
+        if('id' in data){
+          const itemCreated: TodoItem = {
+            id: data.id,
+            title: data.title,
+            description: data.description,
+            priority: data.priority,
+            dueDate: data.dueDate,
+            finishDate: data.finishDate,
+            categoryId: data.categoryId,
+            categoryName: data.categoryName,
+            categoryDescription: data.categoryDescription,
+            isTempDeleted: false
+          }
+          return itemCreated;
+        }
       }
       catch(error){
 
@@ -59,8 +75,31 @@ export const createTodo = async (newTodoItem: TodoItem) => {
       }
 };
 
-export const updateTodo = async () => {
- 
+export const updateTodo = async (updatedItem: TodoItem) => {
+   try{
+       const params = {
+        id: updatedItem.id,
+        title: updatedItem.title,
+        description: updatedItem.description,
+        priority: updatedItem.priority,
+        categoryId: updatedItem.categoryId,
+        dueDate: updatedItem.dueDate,
+        isCompleted: updatedItem.finishDate != null
+      }
+
+      const response = await api.put<ValidationResult|null>(`/todos/${updatedItem.id}`, params)
+      if(response.data){
+        throw new Error(`Erro na Update!!!`);
+      }
+    }
+    catch(error){
+        const responseError = getAxiosError()  
+        if (responseError.isAxiosError(error)) {
+          throw new Error(`Erro na Update: ${responseError.error.name}`);
+        }
+
+        throw error;
+      }
 };
 
 export const deleteTodo = async (id: string) => {
