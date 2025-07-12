@@ -1,10 +1,16 @@
-import { createContext, useState} from 'react';
+import { createContext, useContext, useState} from 'react';
 import { ContextCommonProps } from './ContextCommonProps';
 import { login } from '../Services/AccountService';
 import { AccountLogin } from '../CommonInterfaces/AccountLogin';
 
 interface AccountContextType {
-  setLogin: (userName: string, password: string) => {}
+  userId: string;
+  userName: string;
+  pictureUrl: string;
+  token: string;
+  setLogin: (userName: string, password: string) => Promise<void>;
+  isAuthenticated: () => boolean;
+  logout: () => void;
 }
 
 const AccountContext = createContext<AccountContextType | null>(null);
@@ -21,7 +27,6 @@ export const AccountContextProvider = ({ children }: ContextCommonProps) => {
             userName,
             password
         }
-
         const result = await login(loginRequest)
         if('token' in result){
             setUserId(result.userId)
@@ -29,19 +34,39 @@ export const AccountContextProvider = ({ children }: ContextCommonProps) => {
             setPictureUrl(result.pictureUrl)
             setToken(result.token)
         }
-
-    }catch(ex: any){
+    }
+    catch(ex: any){
         console.log("Ocorreu um erro! ",ex.message);
     }
+  }
 
+  function isAuthenticated(): boolean {
+    return token !== '' && userId !== '';
+  }
+
+  function logout(): void {
+    setUserId('');
+    setUserName('');
+    setPictureUrl('');
+    setToken('');
   }
 
   return (
-      <AccountContext.Provider value={{setLogin}}>
+      <AccountContext.Provider value={{userId,userName,pictureUrl,token, setLogin,isAuthenticated,logout}}>
         {children}
       </AccountContext.Provider>
     );
 };
+
+export const useAccount = () => {
+  const context = useContext(AccountContext);
+
+  if(!context){
+    throw new Error('useAccount deve ser usado dentro de um AccountContextProvider');
+  }
+  
+  return context;
+}
 
 
 export {AccountContext};

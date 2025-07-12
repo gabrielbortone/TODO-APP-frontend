@@ -6,6 +6,10 @@ import { DefaultWrapper } from './Components/DefaultComponents';
 import MenuBar from './Components/MenuBar';
 import Settings from './Pages/Settings';
 import Categories from './Pages/Categories';
+import { AccountContextProvider } from './Contexts/AccountContext';
+import { TodoContextProvider } from './Contexts/ToDoContext';
+import Login from './Pages/Account/Login';
+import Register from './Pages/Account/Register';
 
 function App() {
 
@@ -14,12 +18,18 @@ function App() {
       <GlobalStyledStyle />
       <MenuBar />
       <DefaultWrapper>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/settings" element={<Settings />} />
-          <Route path="/categories" element={<Categories />} />
-          <Route path="/about" element={<About />} />
-        </Routes>
+        <AccountContextProvider>
+          <TodoContextProvider>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/settings" element={<Settings />} />
+              <Route path="/categories" element={<Categories />} />
+              <Route path="/about" element={<About />} />
+            </Routes>
+          </TodoContextProvider>
+        </AccountContextProvider>
       </DefaultWrapper>
     </>
   )
