@@ -10,6 +10,7 @@ import { AccountContextProvider } from './Contexts/AccountContext';
 import { TodoContextProvider } from './Contexts/ToDoContext';
 import Login from './Pages/Account/Login';
 import Register from './Pages/Account/Register';
+import ProtectedRoute from './Pages/ProtectedRoute';
 
 function App() {
 
@@ -24,9 +25,9 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
-              <Route path="/settings" element={<Settings />} />
-              <Route path="/categories" element={<Categories />} />
-              <Route path="/about" element={<About />} />
+              <Route path="/settings" element={<ProtectedRoute><Settings /></ProtectedRoute>} />
+              <Route path="/categories" element={<ProtectedRoute><Categories /></ProtectedRoute>} />
+              <Route path="/about" element={<ProtectedRoute><About /></ProtectedRoute>} />
             </Routes>
           </TodoContextProvider>
         </AccountContextProvider>
