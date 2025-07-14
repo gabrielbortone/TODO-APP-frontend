@@ -8,6 +8,5 @@ interface ProtectedRouteProps {
 
 export default function ProtectedRoute({ children } : ProtectedRouteProps){
      const { isAuthenticated } = useAccount();
-     
     return isAuthenticated() ? children : <Navigate to="/login"></Navigate>
 }

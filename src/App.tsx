@@ -11,6 +11,7 @@ import { TodoContextProvider } from './Contexts/ToDoContext';
 import Login from './Pages/Account/Login';
 import Register from './Pages/Account/Register';
 import ProtectedRoute from './Pages/ProtectedRoute';
+import MyAccount from './Pages/Account/MyAccount';
 
 function App() {
 
@@ -26,6 +27,7 @@ function App() {
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
               <Route path="/settings" element={<ProtectedRoute><Settings /></ProtectedRoute>} />
+              <Route path="/my-account" element={<ProtectedRoute><MyAccount /></ProtectedRoute>} />
               <Route path="/categories" element={<ProtectedRoute><Categories /></ProtectedRoute>} />
               <Route path="/about" element={<ProtectedRoute><About /></ProtectedRoute>} />
             </Routes>
@@ -34,7 +36,6 @@ function App() {
       </DefaultWrapper>
     </>
   )
-
 }
 
 export default App
