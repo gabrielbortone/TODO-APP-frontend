@@ -1,50 +1,81 @@
-# React + TypeScript + Vite
+Of course! Here is the README translated into English.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+TODO App (Frontend)
 
-Currently, two official plugins are available:
+This repository contains the frontend source code for the TODO App, an application designed to help organize and manage daily tasks in a simple and intuitive way.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+The application connects to a backend API to handle user authentication and CRUD (Create, Read, Update, Delete) operations for tasks.
 
-## Expanding the ESLint configuration
+✨ Features
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+    User Authentication: Complete Login and Registration system for secure access.
 
-- Configure the top-level `parserOptions` property like this:
+    Task Creation: Add new tasks quickly and easily.
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+    Task Viewing: List all your pending and completed tasks.
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+    Task Updates: Mark tasks as completed or uncheck them.
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+    Task Deletion: Remove tasks that are no longer needed.
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+    Clean and Responsive UI: User-friendly design focused on usability and user experience.
+
+💻 Tech Stack
+
+This project was built using the following technologies and libraries:
+
+    React.js: A JavaScript library for building user interfaces.
+
+    TypeScript: A superset of JavaScript that adds static typing.
+
+    Styled Components: For component-level styling with dynamic props.
+
+    React Router DOM: For handling routing within the application.
+
+    Axios: A promise-based HTTP client for making requests to the backend API.
+
+    JWT Decode: For decoding JWTs to extract payload information.
+
+🚀 Getting Started
+
+To run this project locally, follow the steps below.
+
+Prerequisites
+
+    Node.js (v16 or higher)
+
+    NPM or Yarn
+
+    The TODO App backend API must be running.
+
+Installation and Setup
+
+    Clone the repository:
+    Bash
+
+git clone https://github.com/gabrielbortone/TODO-APP-frontend.git
+
+Navigate to the project directory:
+Bash
+
+cd TODO-APP-frontend
+
+Install the dependencies:
+Bash
+
+npm install
+# or
+yarn install
+
+API Configuration
+
+By default, the application will attempt to connect to the API at http://localhost:5194. If your API is running on a different port or address, you can change the baseURL in the src/services/api.ts file.
+
+Start the application:
+Bash
+
+    npm start
+    # or
+    yarn start
+
+The development server will start, and the application will be accessible at http://localhost:3000 in your browser.
