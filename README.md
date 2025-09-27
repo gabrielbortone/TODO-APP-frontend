@@ -1,6 +1,8 @@
-Of course! Here is the README translated into English.
-
 TODO App (Frontend)
+
+🚧 **Work in Progress** 🚧
+
+This project is currently under active development. The existing features are stable, but new features and improvements are planned for the future. Contributions are welcome!
 
 This repository contains the frontend source code for the TODO App, an application designed to help organize and manage daily tasks in a simple and intuitive way.
 
